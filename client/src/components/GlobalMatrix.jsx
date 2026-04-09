@@ -99,6 +99,7 @@ const GlobalMatrix = () => {
             <img 
               src={matrixFeedImg} 
               alt="Astrix Public Signal Matrix" 
+              loading="lazy"
               className="w-full h-auto object-contain rounded-lg opacity-90 group-hover:opacity-100 transition-opacity duration-700" 
             /> 
           </div>

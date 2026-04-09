@@ -92,6 +92,7 @@ const NexusObserver = () => {
             <img 
               src={historyScreenshot} 
               alt="Nexus History Log" 
+              loading="lazy"
               className="w-full h-auto rounded-xl shadow-2xl border border-white/10"
             />
           </motion.div>
