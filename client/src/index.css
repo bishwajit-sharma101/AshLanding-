@@ -2,6 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+
+
+
 @layer base {
   body {
     background-color: #050505;
@@ -52,5 +55,13 @@
     mix-blend-mode: soft-light;
     pointer-events: none;
     z-index: 9999; /* On top of ALL content */
+  }
+}
+
+/* Disable expensive grain animation on mobile devices */
+@media (max-width: 768px) {
+  .neural-noise {
+    animation: none !important; /* Stops the GPU from calculating 60fps noise */
+    opacity: 0.04 !important; /* Keeps a subtle static texture */
   }
 }

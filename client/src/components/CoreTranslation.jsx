@@ -89,7 +89,7 @@ const CoreTranslation = () => {
       <div className="flex-1 w-full h-[300px] md:h-[400px] lg:h-[500px] relative flex items-center justify-center perspective-[2000px] z-10 mt-6 lg:mt-0">
         
         {/* Ambient Backlight Spotlight */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[90%] lg:w-[80%] h-[90%] lg:h-[80%] bg-gradient-to-br from-[#9F4DFF]/40 to-[#00F2FF]/20 rounded-full blur-[80px] lg:blur-[100px] -z-10 pointer-events-none"></div>
+       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[90%] md:w-[80%] h-[90%] md:h-[80%] bg-gradient-to-br from-[#9F4DFF]/30 to-[#00F2FF]/10 rounded-full blur-[50px] md:blur-[100px] -z-10 pointer-events-none"></div>
 
         {showcaseImages.map((item, index) => (
           <motion.div

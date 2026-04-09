@@ -53,8 +53,9 @@ const Hero = () => {
       <div className="sticky top-0 h-screen w-full flex flex-col items-center justify-center overflow-hidden">
         
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-          <div className="w-[80vw] h-[40vw] bg-white/10 rounded-full blur-[150px] animate-pulse"></div>
-        </div>
+  {/* Reduced blur on mobile (blur-[60px]), removed animate-pulse which kills mobile CPUs */}
+  <div className="w-[80vw] h-[40vw] bg-white/10 rounded-full blur-[60px] md:blur-[150px]"></div>
+</div>
 
         <motion.div 
           style={{ y: textY, opacity: textOpacity }} 
@@ -79,7 +80,8 @@ const Hero = () => {
           style={{ 
             y: imageY, 
             scale: imageScale,
-            boxShadow: `0 40px ${imageGlowBlur} 20px rgba(159, 77, 255, 0.8)` 
+            boxShadow: `0 40px ${imageGlowBlur} 20px rgba(159, 77, 255, 0.8)` ,
+            willChange: "transform"
           }}
           className="absolute z-20 flex items-center justify-center w-[95%] max-w-6xl transform-style-preserve-3d"
         >
