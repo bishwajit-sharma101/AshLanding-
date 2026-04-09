@@ -1,13 +1,15 @@
-import React, { useState } from 'react';
+// THE FIX: Import Suspense and lazy here
+import React, { useState, Suspense, lazy } from 'react';
 import { Helmet } from 'react-helmet-async';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
-// Temporarily keep these basic until we apply the kinetic overhaul to them next:
-import CoreTranslation from './components/CoreTranslation'; 
-import NeuralCoach from './components/NeuralCoach';
-import NexusObserver from './components/NexusObserver';
-import GlobalMatrix from './components/GlobalMatrix';
 import Footer from './components/Footer';
+
+// THE FIX: Removed the standard imports and ONLY use lazy loading for these
+const CoreTranslation = lazy(() => import('./components/CoreTranslation'));
+const NeuralCoach = lazy(() => import('./components/NeuralCoach'));
+const NexusObserver = lazy(() => import('./components/NexusObserver'));
+const GlobalMatrix = lazy(() => import('./components/GlobalMatrix'));
 
 function App() {
   // State to manage the VIP Waitlist Modal
@@ -26,8 +28,9 @@ function App() {
         <meta property="og:type" content="website" />
         <meta property="og:title" content="Astrix | Communicate Beyond Words" />
         <meta property="og:description" content="The world's most sophisticated social platform with native AI translation and cognitive coaching." />
-        <meta property="og:url" content="https://www.astrix.com" /> 
-        <meta property="og:image" content="https://www.astrix.com/social-preview.jpg" />
+        {/* Remember to update this URL once your domain is linked! */}
+        <meta property="og:url" content="https://www.astrixnetwork.com" /> 
+        <meta property="og:image" content="https://www.astrixnetwork.com/social-preview.jpg" />
 
         {/* Twitter */}
         <meta name="twitter:card" content="summary_large_image" />
@@ -43,14 +46,16 @@ function App() {
       <Navbar setIsModalOpen={setIsModalOpen} />
       
       <main className="flex flex-col items-center w-full">
-        {/* Phase III: The Kinetic Neural Hero */}
+        {/* Phase III: The Kinetic Neural Hero (Loads instantly) */}
         <Hero />
         
-        {/* Standard components below (will overhaul with Kinetic UI next) */}
-        <CoreTranslation />
-        <NeuralCoach />
-        <NexusObserver />
-        <GlobalMatrix />
+        {/* Lazy Loaded Components */}
+        <Suspense fallback={<div className="h-screen w-full bg-[#050505] flex items-center justify-center"><div className="w-8 h-8 border-2 border-[#9F4DFF] border-t-transparent rounded-full animate-spin"></div></div>}>
+          <CoreTranslation />
+          <NeuralCoach />
+          <NexusObserver />
+          <GlobalMatrix />
+        </Suspense>
       </main>
 
       {/* Pass the state to the Footer where the modal UI lives */}

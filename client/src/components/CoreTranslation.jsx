@@ -128,6 +128,7 @@ const CoreTranslation = () => {
                 <img 
                   src={item.src} 
                   alt={`Astrix UI Feature ${index + 1}`} 
+                  loading="lazy"
                   className="w-full h-full object-cover object-top opacity-90 group-hover:opacity-100 transition-opacity duration-300" 
                 />
               )}
