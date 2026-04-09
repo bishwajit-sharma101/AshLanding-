@@ -12,7 +12,7 @@ const NexusObserver = () => {
       {/* Background Glow */}
       <div className="absolute top-[30%] left-[-20%] w-[600px] h-[600px] bg-rose-900/10 blur-[130px] rounded-full -z-10" />
 
-      {/* Header with high-fidelity animation */}
+      {/* Header with high-fidelity animation (Reina The Companion) */}
       <motion.div 
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -20,13 +20,16 @@ const NexusObserver = () => {
         transition={{ duration: 0.8, ease: "easeOut" }}
         className="text-center mb-16 space-y-4 z-10"
       >
-        <div className="uppercase tracking-[0.4em] text-[10px] font-black text-rose-400">Digital Surveillance 01</div>
+        <div className="uppercase tracking-[0.4em] text-[10px] font-black text-rose-400">INTERACTIVE A.I. PRESENCE</div>
         <h2 className="text-4xl md:text-6xl font-black text-white uppercase tracking-tight leading-[1.1]">
           Meet Reina. <br/> 
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-gray-500 to-gray-700 font-bold">
-            Your Digital Observer.
+            Your Digital COMPANION.
           </span>
         </h2>
+        <p className="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed font-light mt-4">
+          More than just an interface. Reina is a fully integrated cognitive entity. Speak freely, share your thoughts, and experience a virtual presence that listens, responds, and evolves with you.
+        </p>
       </motion.div>
 
       {/* Video Container (Reina) */}
@@ -35,7 +38,7 @@ const NexusObserver = () => {
         whileInView={{ opacity: 1, scale: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 1, ease: "easeOut" }}
-        className="relative w-full max-w-4xl aspect-video rounded-3xl glass-panel p-1.5 shadow-[0_20px_90px_rgba(225,29,72,0.1)] group overflow-hidden mb-24 z-10 border-white/10"
+        className="relative w-full max-w-4xl aspect-video rounded-3xl glass-panel p-1.5 shadow-[0_20px_90px_rgba(225,29,72,0.1)] group overflow-hidden mb-32 z-10 border-white/10"
       >
         {/* Complex HUD Overlay */}
         <div className="absolute top-6 left-6 z-10 text-[9px] font-mono tracking-widest text-white/80 bg-black/60 px-4 py-1.5 rounded-sm backdrop-blur-md border border-white/10 flex items-center gap-2">
@@ -44,7 +47,6 @@ const NexusObserver = () => {
         </div>
         
         <div className="relative w-full h-full bg-[#050505] rounded-2xl overflow-hidden border border-white/5">
-          {/* THE REAL VIDEO IMPLEMENTATION */}
           <video 
             src={reinaVideo} 
             autoPlay 
@@ -57,6 +59,7 @@ const NexusObserver = () => {
         </div>
       </motion.div>
 
+      {/* --- THE TRUE OBSERVER ENGINE FIX --- */}
       {/* The Nexus Navigator: Split View (Text/Image) */}
       <div className="w-full flex flex-col lg:flex-row items-center gap-16 z-10">
         
@@ -67,12 +70,12 @@ const NexusObserver = () => {
           transition={{ duration: 0.8 }}
           className="flex-1 space-y-6 lg:pr-10"
         >
-          <div className="uppercase tracking-[0.3em] text-[10px] font-black text-rose-400 font-mono">Cognitive Reflection Protocol</div>
-          <h3 className="text-3xl md:text-5xl font-black tracking-tight leading-tight">
-            THE NEXUS <br/> NAVIGATOR
+          <div className="uppercase tracking-[0.3em] text-[10px] font-black text-rose-400 font-mono">AUTONOMOUS MEMORY NODE</div>
+          <h3 className="text-3xl md:text-5xl font-black tracking-tight leading-tight uppercase">
+            THE NEXUS <br/> OBSERVER
           </h3>
           <p className="text-gray-400 text-lg leading-relaxed max-w-md font-light">
-            The Observer doesn't just watch; she remembers. Opt-in to the matrix to generate deeply personal, poetic diary entries tracking your conversational cadence,Stored securely on your local node.
+            The Observer operates silently in the background. Opt-in to the matrix and let the engine analyze your conversational cadence, generating deeply personal, poetic diary entries stored securely on your local node.
           </p>
         </motion.div>
 
@@ -91,7 +94,7 @@ const NexusObserver = () => {
             {/* REAL HISTORY LOG SCREENSHOT */}
             <img 
               src={historyScreenshot} 
-              alt="Nexus History Log" 
+              alt="Nexus Observer History Log" 
               loading="lazy"
               className="w-full h-auto rounded-xl shadow-2xl border border-white/10"
             />

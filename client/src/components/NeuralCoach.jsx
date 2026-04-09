@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 // !! LINK YOUR NEURAL COACH SCREENSHOT HERE !!
 // E.g., import coachScreenshot from '../assets/Screenshot 2026-04-08 143724.png';
-import coachScreenshot from '../assets/1.png'; // Placeholder, replace with yours
+import coachScreenshot from '../assets/8.png'; // Placeholder, replace with yours
 
 const NeuralCoach = () => {
   // State to track which "Coach" is currently active in the showcase
@@ -12,7 +12,7 @@ const NeuralCoach = () => {
   const modes = [
     { 
       id: 0, 
-      name: 'The Diplomat', 
+      name: 'The Relationship Expert', 
       desc: 'Formal & Professional Tone Control',
       color: 'from-blue-600/40 to-cyan-400/20',
       shadow: 'rgba(6, 182, 212, 0.4)',
