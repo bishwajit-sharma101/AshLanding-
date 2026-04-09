@@ -2,7 +2,7 @@ import React from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 
 // !! CRITICAL: Ensure these paths match your asset filenames !!
-import reinaVideo from '../assets/reina6.mp4'; 
+import reinaVideo from '../assets/Reina6.mp4'; 
 import historyScreenshot from '../assets/history-log.png'; 
 
 const NexusObserver = () => {
