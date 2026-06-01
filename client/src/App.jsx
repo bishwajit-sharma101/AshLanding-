@@ -1,15 +1,12 @@
-// THE FIX: Import Suspense and lazy here
-import React, { useState, Suspense, lazy } from 'react';
+import React, { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import Footer from './components/Footer';
-
-// THE FIX: Removed the standard imports and ONLY use lazy loading for these
-const CoreTranslation = lazy(() => import('./components/CoreTranslation'));
-const NeuralCoach = lazy(() => import('./components/NeuralCoach'));
-const NexusObserver = lazy(() => import('./components/NexusObserver'));
-const GlobalMatrix = lazy(() => import('./components/GlobalMatrix'));
+import CoreTranslation from './components/CoreTranslation';
+import NeuralCoach from './components/NeuralCoach';
+import NexusObserver from './components/NexusObserver';
+import GlobalMatrix from './components/GlobalMatrix';
 
 function App() {
   // State to manage the VIP Waitlist Modal
@@ -49,13 +46,11 @@ function App() {
         {/* Phase III: The Kinetic Neural Hero (Loads instantly) */}
         <Hero />
         
-        {/* Lazy Loaded Components */}
-        <Suspense fallback={<div className="h-screen w-full bg-[#050505] flex items-center justify-center"><div className="w-8 h-8 border-2 border-[#9F4DFF] border-t-transparent rounded-full animate-spin"></div></div>}>
-          <CoreTranslation />
-          <NeuralCoach />
-          <NexusObserver />
-          <GlobalMatrix />
-        </Suspense>
+        {/* Loaded Components */}
+        <CoreTranslation />
+        <NeuralCoach />
+        <NexusObserver />
+        <GlobalMatrix />
       </main>
 
       {/* Pass the state to the Footer where the modal UI lives */}

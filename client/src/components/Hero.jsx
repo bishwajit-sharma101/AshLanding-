@@ -45,6 +45,61 @@ const Hero = () => {
   const imageGlowBlurRaw = useTransform(scrollYProgress, [0, 0.5], ["30px", "140px"]);
   const imageGlowBlur = useSpring(imageGlowBlurRaw, { stiffness: 80, damping: 25 }); 
 
+  if (isMobile) {
+    return (
+      <section className="relative w-full h-[100vh] bg-[#020202]">
+        <div className="neural-noise"></div>
+        <div className="h-full w-full flex flex-col items-center justify-center overflow-hidden px-4 relative">
+          
+          {/* Subtle static background glow */}
+          <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+            <div className="w-[80vw] h-[40vw] bg-white/10 rounded-full blur-[30px] opacity-50"></div>
+          </div>
+
+          {/* Simple Static Header */}
+          <div className="absolute top-[18vh] text-center z-10 w-full flex flex-col items-center">
+            <p className="text-gray-400 font-mono text-[8px] tracking-[0.6em] uppercase mb-4">
+              Astrix Core Architecture
+            </p>
+            <div className="flex flex-col items-center">
+              <h1 className="text-4xl leading-[1] tracking-tight text-white/95 font-medium mb-1">
+                Communicate
+              </h1>
+              <h1 className="text-5xl leading-[0.85] font-black tracking-tighter uppercase text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-300 to-gray-600 shadow-xl">
+                Beyond Words.
+              </h1>
+            </div>
+          </div>
+
+          {/* Simple Static Image Panel */}
+          <div 
+            style={{ 
+              transform: "translate3d(0, 15vh, 0) scale(0.95)",
+              boxShadow: "0 15px 30px rgba(159, 77, 255, 0.3)" 
+            }}
+            className="absolute z-20 flex items-center justify-center w-[95%] max-w-6xl"
+          >
+            <div className="w-full rounded-xl border border-white/10 bg-[#1A1A1A]/50 p-1 shadow-[0_0_80px_rgba(255,255,255,0.03),_0_30px_60px_rgba(0,0,0,0.6)]">
+              <div className="w-full rounded-lg overflow-hidden relative border border-white/10 bg-[#050505] shadow-[inset_0_0_20px_rgba(0,0,0,0.5)]">
+                <div className="absolute top-2 left-3 flex gap-1.5 z-30">
+                  <div className="w-2 h-2 rounded-full bg-gray-700/70"></div>
+                  <div className="w-2 h-2 rounded-full bg-gray-700/70"></div>
+                  <div className="w-2 h-2 rounded-full bg-gray-700/70"></div>
+                </div>
+                <img 
+                  src={chatInterface} 
+                  alt="Astrix Chat Interface Matrix Showcase" 
+                  className="w-full h-auto object-contain rounded-lg opacity-85" 
+                /> 
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+    );
+  }
+
   return (
     <section ref={targetRef} className={`relative w-full ${isMobile ? 'h-[100vh]' : 'h-[300vh]'} bg-[#020202]`}>
       

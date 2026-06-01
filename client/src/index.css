@@ -58,14 +58,14 @@
   }
 }
 
-/* Disable expensive grain animation on mobile devices */
-@media (max-width: 768px) {
+/* Disable expensive grain animation on mobile & tablet devices */
+@media (max-width: 1024px) {
   .neural-noise {
     animation: none !important; /* Stops the GPU from calculating 60fps noise */
     opacity: 0.04 !important; /* Keeps a subtle static texture */
   }
 
-  /* Optimize glass panels on mobile to bypass heavy GPU backdrop blurs */
+  /* Optimize glass panels on mobile & tablet to bypass heavy GPU backdrop blurs */
   .glass-panel {
     backdrop-filter: blur(4px) !important;
     background-color: rgba(13, 10, 20, 0.92) !important;

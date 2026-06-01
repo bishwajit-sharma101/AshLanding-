@@ -91,55 +91,80 @@ const CoreTranslation = () => {
         {/* Ambient Backlight Spotlight */}
         <div className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[90%] md:w-[80%] h-[90%] md:h-[80%] bg-gradient-to-br ${isStacked ? 'from-[#9F4DFF]/15 to-transparent blur-[25px]' : 'from-[#9F4DFF]/30 to-[#00F2FF]/10 blur-[100px]'} -z-10 pointer-events-none`}></div>
 
-        {showcaseImages.map((item, index) => (
-          <motion.div
-            key={item.config.id}
-            initial={isStacked 
-              ? { opacity: 1, x: item.config.x, y: item.config.y, rotate: 0, scale: item.config.scale } 
-              : { opacity: 0, x: 0, y: 100, rotate: 0, scale: 0.8 }
-            }
-            whileInView={isStacked ? {} : { 
-              opacity: 1, 
-              x: item.config.x, 
-              y: item.config.y, 
-              rotate: item.config.rotate,
-              scale: item.config.scale,
-            }}
-            viewport={{ once: true, margin: "-50px" }}
-            transition={{ duration: 1, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
-            whileHover={isStacked ? {} : {
-              scale: 1.15,
-              rotate: 0,
-              x: 0,
-              y: -20,
-              zIndex: 100,
-              transition: { duration: 0.3, ease: "easeOut" }
-            }}
-            style={{ zIndex: item.config.zIndex }}
-            /* THE FIX: width adjusted for mobile to prevent bleed */
-            className="absolute w-[90%] md:w-[80%] max-w-[450px] aspect-[16/9] rounded-xl border border-white/10 md:border-white/20 bg-[#0A0A0A] shadow-[0_10px_25px_rgba(0,0,0,0.6)] md:shadow-[0_20px_50px_rgba(0,0,0,0.8),_0_0_20px_rgba(159,77,255,0.1)] cursor-pointer overflow-hidden group"
-          >
-            {/* Inner Glass Frame */}
-            <div className="w-full h-full relative">
-              {!item.src && (
-                <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-[#1a1a1a] to-[#050505]">
-                  <p className="text-white/20 font-mono text-xs">Image {index + 1} Pending</p>
+        {showcaseImages.map((item, index) => {
+          if (isStacked) {
+            return (
+              <div
+                key={item.config.id}
+                style={{ 
+                  zIndex: item.config.zIndex,
+                  transform: `translate3d(${item.config.x}px, ${item.config.y}px, 0) scale(${item.config.scale})`
+                }}
+                className="absolute w-[90%] md:w-[80%] max-w-[450px] aspect-[16/9] rounded-xl border border-white/10 md:border-white/20 bg-[#0A0A0A] shadow-[0_10px_25px_rgba(0,0,0,0.6)] md:shadow-[0_20px_50px_rgba(0,0,0,0.8),_0_0_20px_rgba(159,77,255,0.1)] cursor-pointer overflow-hidden group"
+              >
+                <div className="w-full h-full relative">
+                  {!item.src && (
+                    <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-[#1a1a1a] to-[#050505]">
+                      <p className="text-white/20 font-mono text-xs">Image {index + 1} Pending</p>
+                    </div>
+                  )}
+                  {item.src && (
+                    <img 
+                      src={item.src} 
+                      alt={`Astrix UI Feature ${index + 1}`} 
+                      loading="lazy"
+                      className="w-full h-full object-cover object-top opacity-90 group-hover:opacity-100 transition-opacity duration-300" 
+                    />
+                  )}
+                  <div className="absolute inset-0 border border-white/5 group-hover:border-[#9F4DFF]/50 rounded-xl transition-colors duration-300 pointer-events-none z-10"></div>
                 </div>
-              )}
-              
-              {item.src && (
-                <img 
-                  src={item.src} 
-                  alt={`Astrix UI Feature ${index + 1}`} 
-                  loading="lazy"
-                  className="w-full h-full object-cover object-top opacity-90 group-hover:opacity-100 transition-opacity duration-300" 
-                />
-              )}
+              </div>
+            );
+          }
 
-              <div className="absolute inset-0 border border-white/5 group-hover:border-[#9F4DFF]/50 rounded-xl transition-colors duration-300 pointer-events-none z-10"></div>
-            </div>
-          </motion.div>
-        ))}
+          return (
+            <motion.div
+              key={item.config.id}
+              initial={{ opacity: 0, x: 0, y: 100, rotate: 0, scale: 0.8 }}
+              whileInView={{ 
+                opacity: 1, 
+                x: item.config.x, 
+                y: item.config.y, 
+                rotate: item.config.rotate,
+                scale: item.config.scale,
+              }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 1, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
+              whileHover={{
+                scale: 1.15,
+                rotate: 0,
+                x: 0,
+                y: -20,
+                zIndex: 100,
+                transition: { duration: 0.3, ease: "easeOut" }
+              }}
+              style={{ zIndex: item.config.zIndex }}
+              className="absolute w-[90%] md:w-[80%] max-w-[450px] aspect-[16/9] rounded-xl border border-white/10 md:border-white/20 bg-[#0A0A0A] shadow-[0_10px_25px_rgba(0,0,0,0.6)] md:shadow-[0_20px_50px_rgba(0,0,0,0.8),_0_0_20px_rgba(159,77,255,0.1)] cursor-pointer overflow-hidden group"
+            >
+              <div className="w-full h-full relative">
+                {!item.src && (
+                  <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-[#1a1a1a] to-[#050505]">
+                    <p className="text-white/20 font-mono text-xs">Image {index + 1} Pending</p>
+                  </div>
+                )}
+                {item.src && (
+                  <img 
+                    src={item.src} 
+                    alt={`Astrix UI Feature ${index + 1}`} 
+                    loading="lazy"
+                    className="w-full h-full object-cover object-top opacity-90 group-hover:opacity-100 transition-opacity duration-300" 
+                  />
+                )}
+                <div className="absolute inset-0 border border-white/5 group-hover:border-[#9F4DFF]/50 rounded-xl transition-colors duration-300 pointer-events-none z-10"></div>
+              </div>
+            </motion.div>
+          );
+        })}
 
       </div>
       
