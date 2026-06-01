@@ -46,8 +46,8 @@ const NexusObserver = () => {
 
       {/* Header with high-fidelity animation (Reina The Companion) */}
       <motion.div 
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
+        initial={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+        whileInView={isMobile ? {} : { opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-100px" }}
         transition={{ duration: 0.8, ease: "easeOut" }}
         className="text-center mb-16 space-y-4 z-10"
@@ -67,8 +67,8 @@ const NexusObserver = () => {
       {/* Video Container (Reina) */}
       <motion.div 
         ref={videoRef}
-        initial={{ opacity: 0, scale: 0.95, y: 50 }}
-        whileInView={{ opacity: 1, scale: 1, y: 0 }}
+        initial={isMobile ? { opacity: 1, scale: 1, y: 0 } : { opacity: 0, scale: 0.95, y: 50 }}
+        whileInView={isMobile ? {} : { opacity: 1, scale: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 1, ease: "easeOut" }}
         className={`relative w-full max-w-4xl aspect-video rounded-3xl glass-panel p-1.5 ${isMobile ? 'shadow-[0_10px_30px_rgba(225,29,72,0.2)]' : 'shadow-[0_20px_90px_rgba(225,29,72,0.1)]'} group overflow-hidden mb-32 z-10 border-white/10`}
@@ -106,8 +106,8 @@ const NexusObserver = () => {
       <div className="w-full flex flex-col lg:flex-row items-center gap-16 z-10">
         
         <motion.div 
-          initial={{ opacity: 0, x: -50 }}
-          whileInView={{ opacity: 1, x: 0 }}
+          initial={isMobile ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
+          whileInView={isMobile ? {} : { opacity: 1, x: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
           className="flex-1 space-y-6 lg:pr-10"
@@ -123,8 +123,8 @@ const NexusObserver = () => {
 
         {/* Real Screenshot Replacement */}
         <motion.div 
-          initial={{ opacity: 0, x: isMobile ? 0 : 50, rotateY: isMobile ? 0 : 10 }}
-          whileInView={{ opacity: 1, x: 0, rotateY: 0 }}
+          initial={isMobile ? { opacity: 1, x: 0, rotateY: 0 } : { opacity: 0, x: 50, rotateY: 10 }}
+          whileInView={isMobile ? {} : { opacity: 1, x: 0, rotateY: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, ease: "easeOut" }}
           className="flex-1 w-full perspective-[2000px] transform-style-preserve-3d"

@@ -49,8 +49,8 @@ const NeuralCoach = () => {
       
       {/* LEFT SIDE: Interactive Typography & Controls */}
       <motion.div 
-        initial={{ opacity: 0, x: -50 }}
-        whileInView={{ opacity: 1, x: 0 }}
+        initial={isMobile ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
+        whileInView={isMobile ? {} : { opacity: 1, x: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.8, ease: "easeOut" }}
         className="flex-1 space-y-8 z-20 w-full"
@@ -102,8 +102,8 @@ const NeuralCoach = () => {
         <div className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[90%] h-[90%] bg-gradient-to-br ${modes[activeMode].color} rounded-full ${isMobile ? 'blur-[30px] opacity-60' : 'blur-[100px]'} -z-10 transition-all duration-700 ease-in-out`}></div>
 
         <motion.div
-          initial={{ opacity: 0, rotateY: isMobile ? 0 : 15, x: isMobile ? 0 : 50 }}
-          whileInView={{ opacity: 1, rotateY: isMobile ? 0 : -5, x: 0 }}
+          initial={isMobile ? { opacity: 1, rotateY: 0, x: 0 } : { opacity: 0, rotateY: 15, x: 50 }}
+          whileInView={isMobile ? {} : { opacity: 1, rotateY: -5, x: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 1, ease: "easeOut" }}
           style={{ boxShadow: isMobile ? "0 15px 35px rgba(0,0,0,0.6)" : `0 30px 60px rgba(0,0,0,0.8), 0 0 40px ${modes[activeMode].shadow}` }}
@@ -134,8 +134,8 @@ const NeuralCoach = () => {
 
           {/* Floating Telemetry Glass Panel (Overlapping the image) */}
           <motion.div 
-            initial={{ y: 20, opacity: 0 }}
-            whileInView={{ y: 0, opacity: 1 }}
+            initial={isMobile ? { y: 0, opacity: 1 } : { y: 20, opacity: 0 }}
+            whileInView={isMobile ? {} : { y: 0, opacity: 1 }}
             viewport={{ once: true }}
             transition={{ delay: 0.5, duration: 0.6 }}
             className="absolute -bottom-6 -left-6 glass-panel border border-white/20 rounded-xl p-4 shadow-2xl z-30"

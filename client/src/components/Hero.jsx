@@ -46,19 +46,19 @@ const Hero = () => {
   const imageGlowBlur = useSpring(imageGlowBlurRaw, { stiffness: 80, damping: 25 }); 
 
   return (
-    <section ref={targetRef} className="relative w-full h-[300vh] bg-[#020202]">
+    <section ref={targetRef} className={`relative w-full ${isMobile ? 'h-[100vh]' : 'h-[300vh]'} bg-[#020202]`}>
       
       <div className="neural-noise"></div>
 
       <div className="sticky top-0 h-screen w-full flex flex-col items-center justify-center overflow-hidden">
         
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-  {/* Reduced blur on mobile (blur-[60px]), removed animate-pulse which kills mobile CPUs */}
-  <div className="w-[80vw] h-[40vw] bg-white/10 rounded-full blur-[60px] md:blur-[150px]"></div>
-</div>
+          {/* Reduced blur on mobile (blur-[30px]), removed animate-pulse which kills mobile CPUs */}
+          <div className={`w-[80vw] h-[40vw] bg-white/10 rounded-full ${isMobile ? 'blur-[30px] opacity-50' : 'blur-[60px] md:blur-[150px]'}`}></div>
+        </div>
 
         <motion.div 
-          style={{ y: textY, opacity: textOpacity }} 
+          style={{ y: isMobile ? "0%" : textY, opacity: isMobile ? 1 : textOpacity }} 
           // Bumped the text up slightly on mobile (top-[18vh]) to balance the layout perfectly
           className="absolute top-[18vh] md:top-[22vh] text-center z-10 px-4 w-full flex flex-col items-center"
         >

@@ -94,12 +94,15 @@ const CoreTranslation = () => {
         {showcaseImages.map((item, index) => (
           <motion.div
             key={item.config.id}
-            initial={{ opacity: 0, x: 0, y: 100, rotate: 0, scale: 0.8 }}
-            whileInView={{ 
+            initial={isStacked 
+              ? { opacity: 1, x: item.config.x, y: item.config.y, rotate: 0, scale: item.config.scale } 
+              : { opacity: 0, x: 0, y: 100, rotate: 0, scale: 0.8 }
+            }
+            whileInView={isStacked ? {} : { 
               opacity: 1, 
               x: item.config.x, 
               y: item.config.y, 
-              rotate: isStacked ? 0 : item.config.rotate,
+              rotate: item.config.rotate,
               scale: item.config.scale,
             }}
             viewport={{ once: true, margin: "-50px" }}

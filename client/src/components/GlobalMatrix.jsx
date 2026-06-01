@@ -52,8 +52,8 @@ const GlobalMatrix = () => {
       {/* HEADER SECTION: Clean, Monochromatic, Pitch-Focused */}
       <div className="flex flex-col md:flex-row justify-between items-end mb-20 gap-10">
         <motion.div 
-          initial={{ opacity: 0, x: -30 }}
-          whileInView={{ opacity: 1, x: 0 }}
+          initial={isMobile ? { opacity: 1, x: 0 } : { opacity: 0, x: -30 }}
+          whileInView={isMobile ? {} : { opacity: 1, x: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
           className="max-w-2xl"
@@ -70,8 +70,8 @@ const GlobalMatrix = () => {
         </motion.div>
         
         <motion.p 
-          initial={{ opacity: 0, x: 30 }}
-          whileInView={{ opacity: 1, x: 0 }}
+          initial={isMobile ? { opacity: 1, x: 0 } : { opacity: 0, x: 30 }}
+          whileInView={isMobile ? {} : { opacity: 1, x: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, delay: 0.2 }}
           className="text-gray-400 max-w-md text-lg font-light leading-relaxed border-l border-white/10 pl-6"
@@ -83,8 +83,8 @@ const GlobalMatrix = () => {
       {/* MAIN SHOWCASE: The Framed App Screenshot */}
       <motion.div 
         style={{ y: isMobile ? "0%" : imageY }}
-        initial={{ opacity: 0, y: 50 }}
-        whileInView={{ opacity: 1, y: 0 }}
+        initial={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+        whileInView={isMobile ? {} : { opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 1, ease: "easeOut" }}
         className="w-full relative flex items-center justify-center mb-24"
@@ -119,8 +119,8 @@ const GlobalMatrix = () => {
         {features.map((feature, idx) => (
           <motion.div 
             key={idx} 
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+            whileInView={isMobile ? {} : { opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: idx * 0.15 }}
             className="glass-panel p-8 rounded-2xl border border-white/5 hover:border-white/20 transition-colors duration-500 group relative overflow-hidden"
