@@ -2,7 +2,7 @@ import React, { useRef, useState, useEffect } from 'react';
 import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
 
 // !! LINK YOUR ACTUAL SCREENSHOT HERE !!
-import chatInterface from '../assets/1.png'; 
+import chatInterface from '../assets/1.webp'; 
 
 const Hero = () => {
   const targetRef = useRef(null);
@@ -78,10 +78,12 @@ const Hero = () => {
 
         <motion.div
           style={{ 
-            y: imageY, 
-            scale: imageScale,
-            boxShadow: `0 40px ${imageGlowBlur} 20px rgba(159, 77, 255, 0.8)` ,
-            willChange: "transform"
+            y: isMobile ? "15vh" : imageY, 
+            scale: isMobile ? 0.95 : imageScale,
+            boxShadow: isMobile 
+              ? "0 15px 30px rgba(159, 77, 255, 0.3)" 
+              : `0 40px ${imageGlowBlur} 20px rgba(159, 77, 255, 0.8)`,
+            willChange: isMobile ? "auto" : "transform"
           }}
           className="absolute z-20 flex items-center justify-center w-[95%] max-w-6xl transform-style-preserve-3d"
         >

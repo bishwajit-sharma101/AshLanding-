@@ -1,13 +1,21 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 // !! LINK YOUR NEURAL COACH SCREENSHOT HERE !!
 // E.g., import coachScreenshot from '../assets/Screenshot 2026-04-08 143724.png';
-import coachScreenshot from '../assets/8.png'; // Placeholder, replace with yours
+import coachScreenshot from '../assets/8.webp'; // Placeholder, replace with yours
 
 const NeuralCoach = () => {
   // State to track which "Coach" is currently active in the showcase
   const [activeMode, setActiveMode] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 768);
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   const modes = [
     { 
@@ -91,14 +99,14 @@ const NeuralCoach = () => {
       <div className="flex-1 w-full relative flex items-center justify-center perspective-[2000px] z-10 mt-16 lg:mt-0 min-h-[500px]">
         
         {/* Dynamic Backlight: Changes color based on active mode! */}
-        <div className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[90%] h-[90%] bg-gradient-to-br ${modes[activeMode].color} rounded-full blur-[100px] -z-10 transition-all duration-700 ease-in-out`}></div>
+        <div className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[90%] h-[90%] bg-gradient-to-br ${modes[activeMode].color} rounded-full ${isMobile ? 'blur-[30px] opacity-60' : 'blur-[100px]'} -z-10 transition-all duration-700 ease-in-out`}></div>
 
         <motion.div
-          initial={{ opacity: 0, rotateY: 15, x: 50 }}
-          whileInView={{ opacity: 1, rotateY: -5, x: 0 }}
+          initial={{ opacity: 0, rotateY: isMobile ? 0 : 15, x: isMobile ? 0 : 50 }}
+          whileInView={{ opacity: 1, rotateY: isMobile ? 0 : -5, x: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 1, ease: "easeOut" }}
-          style={{ boxShadow: `0 30px 60px rgba(0,0,0,0.8), 0 0 40px ${modes[activeMode].shadow}` }}
+          style={{ boxShadow: isMobile ? "0 15px 35px rgba(0,0,0,0.6)" : `0 30px 60px rgba(0,0,0,0.8), 0 0 40px ${modes[activeMode].shadow}` }}
           className="relative w-[95%] max-w-2xl rounded-2xl border border-white/20 bg-[#0A0A0A] p-2 transform-style-preserve-3d transition-shadow duration-700"
         >
           {/* The Inner Screen */}
@@ -112,16 +120,16 @@ const NeuralCoach = () => {
               className="w-full h-auto object-cover opacity-90"
             />
 
-            {/* The Infinite Laser Scan Line */}
-            <motion.div 
-              animate={{ top: ['-10%', '110%'] }}
-              transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
-              className="absolute left-0 w-full h-[100px] pointer-events-none z-20"
-              style={{
-                background: `linear-gradient(to bottom, transparent, ${modes[activeMode].shadow.replace('0.4', '0.1')}, transparent)`,
-                borderBottom: `1px solid ${modes[activeMode].shadow.replace('rgba', 'rgb').replace(', 0.4)', ')')}`
-              }}
-            />
+            {/* The Infinite Laser Scan Line (Compositor-animated) */}
+            <div className="absolute inset-0 w-full h-full pointer-events-none overflow-hidden laser-scan">
+              <div 
+                className="absolute bottom-0 left-0 w-full h-[100px] z-20"
+                style={{
+                  background: `linear-gradient(to bottom, transparent, ${modes[activeMode].shadow.replace('0.4', '0.08')}, transparent)`,
+                  borderBottom: `1px solid ${modes[activeMode].shadow.replace('rgba', 'rgb').replace(', 0.4)', ')')}`
+                }}
+              />
+            </div>
           </div>
 
           {/* Floating Telemetry Glass Panel (Overlapping the image) */}

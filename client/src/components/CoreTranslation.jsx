@@ -2,11 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 
 // !! LINK YOUR 5 ACTUAL SCREENSHOTS HERE !!
-import img1 from '../assets/2.png';
-import img2 from '../assets/3.png';
-import img3 from '../assets/4.png';
-import img4 from '../assets/5.png';
-import img5 from '../assets/6.png';
+import img1 from '../assets/2.webp';
+import img2 from '../assets/3.webp';
+import img3 from '../assets/4.webp';
+import img4 from '../assets/5.webp';
+import img5 from '../assets/6.webp';
 
 const CoreTranslation = () => {
   // --- RESPONSIVE STATE TRACKER ---
@@ -89,7 +89,7 @@ const CoreTranslation = () => {
       <div className="flex-1 w-full h-[300px] md:h-[400px] lg:h-[500px] relative flex items-center justify-center perspective-[2000px] z-10 mt-6 lg:mt-0">
         
         {/* Ambient Backlight Spotlight */}
-       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[90%] md:w-[80%] h-[90%] md:h-[80%] bg-gradient-to-br from-[#9F4DFF]/30 to-[#00F2FF]/10 rounded-full blur-[50px] md:blur-[100px] -z-10 pointer-events-none"></div>
+        <div className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[90%] md:w-[80%] h-[90%] md:h-[80%] bg-gradient-to-br ${isStacked ? 'from-[#9F4DFF]/15 to-transparent blur-[25px]' : 'from-[#9F4DFF]/30 to-[#00F2FF]/10 blur-[100px]'} -z-10 pointer-events-none`}></div>
 
         {showcaseImages.map((item, index) => (
           <motion.div
@@ -99,12 +99,12 @@ const CoreTranslation = () => {
               opacity: 1, 
               x: item.config.x, 
               y: item.config.y, 
-              rotate: item.config.rotate,
+              rotate: isStacked ? 0 : item.config.rotate,
               scale: item.config.scale,
             }}
             viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 1, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
-            whileHover={{
+            whileHover={isStacked ? {} : {
               scale: 1.15,
               rotate: 0,
               x: 0,
@@ -114,7 +114,7 @@ const CoreTranslation = () => {
             }}
             style={{ zIndex: item.config.zIndex }}
             /* THE FIX: width adjusted for mobile to prevent bleed */
-            className="absolute w-[90%] md:w-[80%] max-w-[450px] aspect-[16/9] rounded-xl border border-white/20 bg-[#0A0A0A] shadow-[0_20px_50px_rgba(0,0,0,0.8),_0_0_20px_rgba(159,77,255,0.1)] cursor-pointer overflow-hidden group"
+            className="absolute w-[90%] md:w-[80%] max-w-[450px] aspect-[16/9] rounded-xl border border-white/10 md:border-white/20 bg-[#0A0A0A] shadow-[0_10px_25px_rgba(0,0,0,0.6)] md:shadow-[0_20px_50px_rgba(0,0,0,0.8),_0_0_20px_rgba(159,77,255,0.1)] cursor-pointer overflow-hidden group"
           >
             {/* Inner Glass Frame */}
             <div className="w-full h-full relative">

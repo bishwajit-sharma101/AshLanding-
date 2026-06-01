@@ -1,12 +1,20 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 
 // !! LINK YOUR ACTUAL SCREENSHOT HERE !!
 // Use the screenshot that shows the "Context Log" open on the right side (Screenshot 2026-04-08 143939.png)
-import matrixFeedImg from '../assets/7.png'; 
+import matrixFeedImg from '../assets/7.webp'; 
 
 const GlobalMatrix = () => {
   const targetRef = useRef(null);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 768);
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
   
   // Subtle parallax for the main showcase image
   const { scrollYProgress } = useScroll({
@@ -39,7 +47,7 @@ const GlobalMatrix = () => {
     <section ref={targetRef} className="relative w-full max-w-7xl mx-auto px-6 py-40 border-t border-white/5 z-10">
       
       {/* Intense Ambient Backlight for the whole section */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[600px] bg-gradient-to-tr from-[#9F4DFF]/15 to-[#00F2FF]/5 rounded-full blur-[150px] -z-10 pointer-events-none"></div>
+      <div className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[600px] bg-gradient-to-tr from-[#9F4DFF]/15 to-[#00F2FF]/5 rounded-full ${isMobile ? 'blur-[60px] opacity-60' : 'blur-[150px]'} -z-10 pointer-events-none`}></div>
 
       {/* HEADER SECTION: Clean, Monochromatic, Pitch-Focused */}
       <div className="flex flex-col md:flex-row justify-between items-end mb-20 gap-10">
@@ -74,7 +82,7 @@ const GlobalMatrix = () => {
 
       {/* MAIN SHOWCASE: The Framed App Screenshot */}
       <motion.div 
-        style={{ y: imageY }}
+        style={{ y: isMobile ? "0%" : imageY }}
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
@@ -82,7 +90,7 @@ const GlobalMatrix = () => {
         className="w-full relative flex items-center justify-center mb-24"
       >
         {/* The Frame */}
-        <div className="w-full rounded-2xl md:rounded-[2rem] border border-white/20 bg-[#1A1A1A]/60 backdrop-blur-2xl p-2 md:p-4 shadow-[0_30px_80px_rgba(0,0,0,0.8),_0_0_40px_rgba(159,77,255,0.15)] group relative overflow-hidden">
+        <div className={`w-full rounded-2xl md:rounded-[2rem] border border-white/10 md:border-white/20 bg-[#1A1A1A]/60 backdrop-blur-2xl p-2 md:p-4 ${isMobile ? 'shadow-[0_15px_30px_rgba(0,0,0,0.6)]' : 'shadow-[0_30px_80px_rgba(0,0,0,0.8),_0_0_40px_rgba(159,77,255,0.15)]'} group relative overflow-hidden`}>
           
           {/* Subtle animated border glow on hover */}
           <div className="absolute inset-0 bg-gradient-to-r from-[#9F4DFF]/0 via-[#9F4DFF]/20 to-[#00F2FF]/0 opacity-0 group-hover:opacity-100 transition-opacity duration-1000 blur-xl"></div>

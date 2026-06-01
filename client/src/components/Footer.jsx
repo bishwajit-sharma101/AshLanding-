@@ -1,9 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
-const Footer = () => {
-  // State to manage the sleek Waitlist Modal
-  const [isModalOpen, setIsModalOpen] = useState(false);
+const Footer = ({ isModalOpen, setIsModalOpen }) => {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 768);
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   return (
     <>
@@ -13,7 +19,7 @@ const Footer = () => {
       <section className="relative w-full max-w-7xl mx-auto px-6 py-40 flex flex-col items-center justify-center min-h-[80vh] border-t border-white/5 z-10">
         
         {/* Massive Ambient Core Background */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[100%] h-[100%] max-w-[1000px] bg-gradient-to-b from-[#9F4DFF]/10 via-[#00F2FF]/5 to-transparent rounded-full blur-[120px] -z-10 pointer-events-none"></div>
+        <div className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[100%] h-[100%] max-w-[1000px] bg-gradient-to-b from-[#9F4DFF]/10 via-[#00F2FF]/5 to-transparent rounded-full ${isMobile ? 'blur-[45px] opacity-60' : 'blur-[120px]'} -z-10 pointer-events-none`}></div>
 
         <motion.div 
           initial={{ opacity: 0, y: 50 }}
